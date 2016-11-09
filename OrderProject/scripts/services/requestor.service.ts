@@ -2,7 +2,7 @@
     export class Requestor implements IRequestor {
         constructor(private $http: ng.IHttpService) { }
         getData = function (callBkFn: Function) {
-            this.$http.get("http://localhost:55591/sample-order-dump.json")
+            this.$http.get("http://assets.limetray.com/assets/frontend-assignment/sample-order-dump.json")
                 .then(callBkFn.bind(this))
                 .catch(callBkFn.bind(this));
         }
