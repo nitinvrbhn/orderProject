@@ -1,0 +1,78 @@
+﻿<!-- Order container template -->
+<div ng-controller="OrderController as orderCtrl">
+    <div ng-if="orderCtrl.isErrorOccured">
+        <h1>404: Data not found</h1>
+    </div>
+    <div class="col-sm-12 orderContainer" infinite-scroll ng-if="orderCtrl.isDataLoaded">
+        <div class="pull-left header">
+            <span class="col-sm-4 col-xs-12">Customer Name</span>
+            <span class="col-sm-4 stateColumn">State</span>
+            <span class="col-sm-4 amountColumn">Amount</span>
+        </div>
+        <div class="pull-left" ng-repeat="data in orderCtrl.shortData">
+            <span class="col-sm-4 col-xs-12" ng-click="orderCtrl.setPopupData(data)"><a href="#">{{::data.customer.name}}</a></span>
+            <div class="col-sm-4 stateColumn">
+                <button type="button" ng-click="orderCtrl.toggleDropDown(data)">{{data.state}}</button>
+                <ul class="dropdown-menu stateDropDown show" ng-if="data.showDropDown" show-hide>
+                    <li><a href="#" ng-click="orderCtrl.updateState(data, 'ACCEPTED')">ACCEPTED</a></li>
+                    <li><a href="#" ng-click="orderCtrl.updateState(data, 'DISPATCHED')">DISPATCHED</a></li>
+                    <li><a href="#" ng-click="orderCtrl.updateState(data, 'DELIVERED')">DELIVERED</a></li>
+                </ul>
+            </div>
+            <span class="col-sm-4 amountColumn">{{::data.amount}}</span>
+
+        </div>
+    </div>
+    <aside create-popup ng-if="orderCtrl.isPopupOpen">
+        <div class="popup pull-left">
+            <div class="col-sm-12">
+                <div class="col-sm-7">
+                    <span class="popupHead">OrderID:</span>
+                    <span>{{orderCtrl.popupData.orderId}}</span>
+                </div>
+                <div class="col-sm-5">
+                    <span class="popupHead">State:</span>
+                    <span>{{orderCtrl.popupData.state}}</span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-7">
+                    <span class="popupHead">Amount:</span>
+                    <span class="popupData">{{orderCtrl.popupData.amount}}</span>
+                </div>
+                <div class="col-sm-5">
+                    <span class="popupHead">Created:</span>
+                    <span class="popupData">{{orderCtrl.popupData.createdAt}}</span>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="col-sm-12">
+                    <span class="popupMainHead">Customer Details:</span>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <span class="popupHead">Name:</span>
+                        <span class="popupData">{{orderCtrl.popupData.customer.name}}</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <span class="popupHead">Phone:</span>
+                        <span class="popupData">{{orderCtrl.popupData.customer.phone}}</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <span class="popupHead">Address:</span>
+                        <span class="popupData">{{orderCtrl.popupData.customer.address}}</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <span class="popupHead">Latitude:</span>
+                        <span class="popupData">{{orderCtrl.popupData.customer.latitude}}</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <span class="popupHead">Longitude:</span>
+                        <span class="popupData">{{orderCtrl.popupData.customer.longitude}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>

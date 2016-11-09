@@ -1,0 +1,11 @@
+D:\OrderProject\OrderProject\OrderProject\bin\OrderProject.dll.config
+D:\OrderProject\OrderProject\OrderProject\bin\OrderProject.dll
+D:\OrderProject\OrderProject\OrderProject\bin\OrderProject.pdb
+D:\OrderProject\OrderProject\OrderProject\obj\Debug\OrderProject.dll
+D:\OrderProject\OrderProject\OrderProject\obj\Debug\OrderProject.pdb
+C:\D-Files\Projects\Test\Test\OrderProject\OrderProject\bin\OrderProject.dll.config
+C:\D-Files\Projects\Test\Test\OrderProject\OrderProject\bin\OrderProject.dll
+C:\D-Files\Projects\Test\Test\OrderProject\OrderProject\bin\OrderProject.pdb
+C:\D-Files\Projects\Test\Test\OrderProject\OrderProject\obj\Debug\OrderProject.csprojResolveAssemblyReference.cache
+C:\D-Files\Projects\Test\Test\OrderProject\OrderProject\obj\Debug\OrderProject.dll
+C:\D-Files\Projects\Test\Test\OrderProject\OrderProject\obj\Debug\OrderProject.pdb
