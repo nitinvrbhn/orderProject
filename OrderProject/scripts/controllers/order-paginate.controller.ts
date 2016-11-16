@@ -1,27 +1,21 @@
 ﻿module OrderProject {
-    export class OrderController {
-        appendedDataLength: number;
+    export class OrderPaginateController {
         shortData: Array<IOrder>;
-        data: Array<IOrder>;
-        popupData: IOrder;
         dropDownData: IOrder;
-        isPopupOpen: boolean;
         isDataLoaded: boolean;
         isErrorOccured: boolean;
+        pageNumber: number
         constructor($rootScope: ng.IRootScopeService, private requestor: IRequestor, private $scope: ng.IScope, private $timeout: ng.ITimeoutService, userDetails: IUserDetails) {
-            this.appendedDataLength = 0;
             this.shortData = [];
-            this.isPopupOpen = false;
+            this.pageNumber = 1;
             this.isDataLoaded = false;
             this.isErrorOccured = false;
             userDetails.updateUserDetails(null, null);
-            requestor.getAllData(this.loadData.bind(this));
-            $rootScope.$on("appendOrders", this.appendData.bind(this));                                     // Listener to append order in grids
+            requestor.getNextData(this.loadData.bind(this), { pageNumber: this.pageNumber});
         }
         loadData(response: IResponse) {
             if (response.status === 200) {
-                this.data = response.data;
-                this.appendData(null, 40);
+                this.shortData = response.data;
                 this.isDataLoaded = true;
             } else if (response.status === 401) {
                 window.location.pathname = "/login.html";
@@ -29,30 +23,24 @@
                 this.isErrorOccured = true;
             }
         }
-        // Append new orders when scroll reches bottom
-        appendData(event: any, appendNumber: number) {
-            var totalAppend = appendNumber ? appendNumber : 20;
-            for (var index = 0; index < totalAppend; index++) {
-                if (this.data[index + this.appendedDataLength]) {
-                    this.shortData.push(this.data[index + this.appendedDataLength]);
-                }
-            }
-            this.appendedDataLength += index;
-            this.$timeout(function () { this.$scope.$apply(); }.bind(this));
-        }
-        setPopupData(data: IOrder) {
-            this.popupData = data;
-            this.isPopupOpen = true;
+        getNextData(index: number) {
+            this.pageNumber += index;
+            this.requestor.getNextData(this.loadData.bind(this), { pageNumber: this.pageNumber });
         }
         toggleDropDown(data) {
             this.$timeout(function () {
                 data.showDropDown = !data.showDropDown;
                 this.dropDownData = data;
             }.bind(this));
+            data.showDetails = !data.showDetails;
         }
-        updateState(data: IOrder, newState: string) {
+        updateState(data: any, newState: string) {
             data.state = newState;
+            data.showDetails = !data.showDetails;
             //this.requestor.updateData({ ID: data.orderId, state: newState }, null);                       // To be used when API is present for updating state
+        }
+        toggleData(data: any) {
+            data.showDetails = !data.showDetails;
         }
     }
 }

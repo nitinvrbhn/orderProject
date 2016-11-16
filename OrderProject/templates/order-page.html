@@ -10,10 +10,10 @@
             <span class="col-sm-4 amountColumn">Amount</span>
         </div>
         <div class="pull-left" ng-repeat="data in orderCtrl.shortData">
-            <span class="col-sm-4 col-xs-12" ng-click="orderCtrl.setPopupData(data)"><a href="#">{{::data.customer.name}}</a></span>
+            <span class="col-sm-4 col-xs-12" ng-click="orderCtrl.setPopupData(data)"><a href="">{{::data.customer.name}}</a></span>
             <div class="col-sm-4 stateColumn">
                 <button type="button" ng-click="orderCtrl.toggleDropDown(data)">{{data.state}}</button>
-                <ul class="dropdown-menu stateDropDown show" ng-if="data.showDropDown" show-hide>
+                <ul class="dropdown-menu stateDropDown show" ng-if="data.showDropDown" show-hide="focus" controller-alias="orderCtrl">
                     <li><a href="#" ng-click="orderCtrl.updateState(data, 'ACCEPTED')">ACCEPTED</a></li>
                     <li><a href="#" ng-click="orderCtrl.updateState(data, 'DISPATCHED')">DISPATCHED</a></li>
                     <li><a href="#" ng-click="orderCtrl.updateState(data, 'DELIVERED')">DELIVERED</a></li>

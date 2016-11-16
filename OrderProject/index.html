@@ -12,6 +12,7 @@
 
     <!-- Angular libraries -->
     <script src="scripts/vendors/angular.min.js"></script>
+    <script src="scripts/vendors/angular-route.min.js"></script>
     <script src="scripts/vendors/jquery.min.js"></script>
 
     <!-- Custom scripts -->
@@ -19,7 +20,12 @@
 </head>
 <body>
     <main ng-app="OrderProject" class="container">
-        <div ng-include="'templates/order-page.html'"></div>
+        <div class="col-sm-12 linkContainer">
+            <a href="#/"><span>Infinite Scroll View</span></a>
+            <a href="#/paginate"><span>Pagination View</span></a>
+            <a href="login.html" class="pull-right" onclick="document.cookie=''">Logout</a>
+        </div>
+        <div ng-view></div>
     </main>
 </body>
 </html>

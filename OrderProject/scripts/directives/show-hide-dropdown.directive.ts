@@ -6,12 +6,14 @@
                 var clickEvent: any = "click";
                 $timeout(function () {
                     angular.element(document).one(clickEvent, function (event: MouseEvent) {
-                        scope.orderCtrl.dropDownData.showDropDown = false;
+                        scope[attr.controllerAlias].dropDownData.showDropDown = false;
                         scope.$apply();
                     })
-                    angular.element(element).on(clickEvent, function (event: MouseEvent) {
-                        event.stopPropagation();
-                    })
+                    if (attr.showHide !== "focus") {
+                        angular.element(element).on(clickEvent, function (event: MouseEvent) {
+                            event.stopPropagation();
+                        })
+                    }
                 });
             }
         }

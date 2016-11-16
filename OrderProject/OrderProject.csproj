@@ -22,27 +22,34 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="login.html" />
+    <Content Include="scripts\vendors\angular-route.min.js" />
     <Content Include="scripts\vendors\angular.min.js" />
     <Content Include="scripts\vendors\jquery.min.js" />
     <Content Include="styles\app.css" />
     <Content Include="index.html" />
     <Content Include="styles\bootstrap.min.css" />
+    <Content Include="templates\order-detail.html" />
     <Content Include="templates\order-page.html" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\app.ts" />
+    <TypeScriptCompile Include="scripts\controllers\login.controller.ts" />
+    <TypeScriptCompile Include="scripts\controllers\order-paginate.controller.ts" />
     <TypeScriptCompile Include="scripts\controllers\order.controller.ts" />
     <TypeScriptCompile Include="scripts\directives\create-popup.directive.ts" />
     <TypeScriptCompile Include="scripts\directives\infinite-scroll.directive.ts" />
     <TypeScriptCompile Include="scripts\directives\show-hide-dropdown.directive.ts" />
+    <TypeScriptCompile Include="scripts\factory\userDetails.factory.ts" />
+    <TypeScriptCompile Include="scripts\router\appRouter.router.ts" />
     <TypeScriptCompile Include="scripts\services\requestor.service.ts" />
+    <TypeScriptCompile Include="scripts\typings\angular-route.d.ts" />
     <TypeScriptCompile Include="scripts\typings\angular.d.ts" />
     <TypeScriptCompile Include="scripts\typings\app.interfaces.ts" />
     <TypeScriptCompile Include="scripts\typings\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="sample-order-dump.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -67,7 +74,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55591</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55591/</IISUrl>
+          <IISUrl>http://localhost:55592/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

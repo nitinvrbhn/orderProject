@@ -1,0 +1,81 @@
+﻿<!-- Order container template -->
+<div ng-controller="OrderPaginateController as orderPgCtrl">
+    <div ng-if="orderPgCtrl.isErrorOccured">
+        <h1>404: Data not found</h1>
+    </div>
+    <div class="col-sm-12 paginated-order-container" ng-if="orderPgCtrl.isDataLoaded">
+        <div class="col-xs-12 order-header">
+            <span class="col-sm-4 col-xs-12">Name</span>
+            <span class="col-sm-4 stateColumn">State</span>
+            <span class="col-sm-4 amountColumn">Amount</span>
+        </div>
+        <div class="col-xs-12 row-container" ng-repeat="data in orderPgCtrl.shortData">
+            <aside class="pull-left order-row" ng-click="orderPgCtrl.toggleData(data)">
+                <span class="col-sm-4 col-xs-12">{{::data.customer.name}}</span>
+                <div class="col-sm-4 stateColumn">
+                    <button type="button" ng-click="orderPgCtrl.toggleDropDown(data)">{{data.state}}</button>
+                    <ul class="dropdown-menu stateDropDown show" ng-if="data.showDropDown" show-hide="focus" controller-alias="orderPgCtrl">
+                        <li><a href="" ng-click="orderPgCtrl.updateState(data, 'ACCEPTED')">ACCEPTED</a></li>
+                        <li><a href="" ng-click="orderPgCtrl.updateState(data, 'DISPATCHED')">DISPATCHED</a></li>
+                        <li><a href="" ng-click="orderPgCtrl.updateState(data, 'DELIVERED')">DELIVERED</a></li>
+                    </ul>
+                </div>
+                <span class="col-sm-4 amountColumn">{{::data.amount}}</span>
+            </aside>
+            <aside ng-if="data.showDetails" class="pull-left order-details">
+                <div class="col-sm-12 detail-row">
+                    <div class="col-sm-7">
+                        <span class="popupHead">OrderID:</span>
+                        <span>{{data.orderId}}</span>
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="popupHead">State:</span>
+                        <span>{{data.state}}</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 detail-row">
+                    <div class="col-sm-7">
+                        <span class="popupHead">Amount:</span>
+                        <span class="popupData">{{data.amount}}</span>
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="popupHead">Created:</span>
+                        <span class="popupData">{{data.createdAt}}</span>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="col-sm-12 detail-row">
+                        <span class="popupMainHead">Customer Details:</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12 detail-row">
+                            <span class="popupHead">Name:</span>
+                            <span class="popupData">{{data.customer.name}}</span>
+                        </div>
+                        <div class="col-sm-12 detail-row">
+                            <span class="popupHead">Phone:</span>
+                            <span class="popupData">{{data.customer.phone}}</span>
+                        </div>
+                        <div class="col-sm-12 detail-row">
+                            <span class="popupHead">Address:</span>
+                            <span class="popupData">{{data.customer.address}}</span>
+                        </div>
+                        <div class="col-sm-12 detail-row">
+                            <span class="popupHead">Latitude:</span>
+                            <span class="popupData">{{data.customer.latitude}}</span>
+                        </div>
+                        <div class="col-sm-12 detail-row">
+                            <span class="popupHead">Longitude:</span>
+                            <span class="popupData">{{data.customer.longitude}}</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <aside class="col-xs-12 button-container">
+            <div class="col-sm-6 col-xs-12"><button class="col-sm-4 col-xs-12 pull-right" ng-disabled="orderPgCtrl.pageNumber === 1" ng-click="orderPgCtrl.getNextData(-1)">Previous</button></div>
+            <div class="col-sm-6 col-xs-12"><button class="col-sm-4 col-xs-12"  ng-disabled="orderPgCtrl.shortData.length !== 10" ng-click="orderPgCtrl.getNextData(1)">Next</button></div>
+        </aside>
+    </div>
+</div>

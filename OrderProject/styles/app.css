@@ -27,8 +27,11 @@
 }
 
 .orderContainer button {
-    width: 40%;
     margin-top: 6px;
+}
+
+.orderContainer button, .paginated-order-container .row-container button {
+    width: 40%;
     text-align: left;
 }
 
@@ -62,9 +65,61 @@
     left: 14px;
 }
 
+.linkContainer {
+    border-bottom: 1px solid #000;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+    .linkContainer a {
+        padding: 10px;
+    }
+
+.paginated-order-container .order-header {
+    width: 100%;
+    background-color: #DDD;
+    border: 1px solid #FFF;
+    height: 40px;
+    font-weight: bold;
+}
+
+.paginated-order-container .row-container {
+    background-color: #DDD;
+    border: 1px solid #FFF;
+}
+
+.paginated-order-container .order-row {
+    width: 100%;
+    height: 40px;
+    cursor:pointer;
+}
+
+.paginated-order-container .order-header, .paginated-order-container .order-row {
+    padding-top: 6px;
+}
+
+.order-details {
+    border-top: 1px solid #FFF;
+    padding: 10px 0;
+}
+
+    .order-details .detail-row {
+        padding-bottom: 5px;
+    }
+.button-container > div{
+    padding-top: 15px;
+}
+button[disabled], html input[disabled] {
+    opacity: .5;
+}
+
+.loginContainer > div{
+    padding: 15px;
+}
+
 @media screen and (max-width: 1200px) {
 
-    .orderContainer button {
+    .orderContainer button, .paginated-order-container .row-container button {
         width: 50%;
     }
 }
@@ -74,7 +129,7 @@
         width: 400px;
     }
 
-    .stateColumn, .amountColumn {
+    .stateColumn, .amountColumn, .loginText {
         display: none;
     }
 }

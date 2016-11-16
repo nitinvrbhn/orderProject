@@ -4,8 +4,9 @@
         status: number;
     }
     interface IRequestor {
-        getData(callBkFn: Function): void;
-        updateData(data: any, callBkFn: Function): void;
+        getAllData(callBkFn: Function): void;
+        getNextData(callBkFn: Function, data): void;
+        authenticateUser(callBkFn: Function): void;
     }
     interface IOrder {
         orderId: string;
@@ -20,5 +21,14 @@
         address: string;
         latitude: number;
         longitude: number;
+    }
+    interface IUserCreds {
+        name: string;
+        password: string;
+    }
+    interface IUserDetails {
+        getUserCredentials(): IUserCreds; 
+        getAppendedData(dataObject: any): any;
+        updateUserDetails(userName: string, userPassword: string): void;
     }
 }
