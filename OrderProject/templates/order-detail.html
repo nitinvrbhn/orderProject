@@ -4,12 +4,24 @@
         <h1>404: Data not found</h1>
     </div>
     <div class="col-sm-12 paginated-order-container" ng-if="orderPgCtrl.isDataLoaded">
+        <aside class="col-sm-12 filterContainer">
+            <span class="col-sm-1 col-xs-2">State:</span>
+            <div class="col-sm-6">
+                <input type="text" classs="col-sm-2 col-xs-4" ng-model="orderPgCtrl.filterData.state" ng-click="orderPgCtrl.toggleDropDown(orderPgCtrl.filterDropdownObject) " />
+                <ul class="dropdown-menu stateDropDown show" ng-if="orderPgCtrl.filterDropdownObject.showDropDown" show-hide="focus" controller-alias="orderPgCtrl">
+                    <li><a href="" ng-click="orderPgCtrl.updateFilterState(orderPgCtrl.filterData, '')">All</a></li>
+                    <li><a href="" ng-click="orderPgCtrl.updateFilterState(orderPgCtrl.filterData, 'ACCEPTED')">ACCEPTED</a></li>
+                    <li><a href="" ng-click="orderPgCtrl.updateFilterState(orderPgCtrl.filterData, 'DISPATCHED')">DISPATCHED</a></li>
+                    <li><a href="" ng-click="orderPgCtrl.updateFilterState(orderPgCtrl.filterData, 'DELIVERED')">DELIVERED</a></li>
+                </ul>
+            </div>
+        </aside>
         <div class="col-xs-12 order-header">
             <span class="col-sm-4 col-xs-12">Name</span>
             <span class="col-sm-4 stateColumn">State</span>
             <span class="col-sm-4 amountColumn">Amount</span>
         </div>
-        <div class="col-xs-12 row-container" ng-repeat="data in orderPgCtrl.shortData">
+        <div class="col-xs-12 row-container" ng-repeat="data in orderPgCtrl.shortData | filter:orderPgCtrl.filterData:strict">
             <aside class="pull-left order-row" ng-click="orderPgCtrl.toggleData(data)">
                 <span class="col-sm-4 col-xs-12">{{::data.customer.name}}</span>
                 <div class="col-sm-4 stateColumn">

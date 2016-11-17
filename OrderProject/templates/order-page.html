@@ -4,19 +4,31 @@
         <h1>404: Data not found</h1>
     </div>
     <div class="col-sm-12 orderContainer" infinite-scroll ng-if="orderCtrl.isDataLoaded">
+        <aside class="col-sm-12 filterContainer">
+            <span class="col-sm-1 col-xs-2">State:</span>
+            <div class="col-sm-6">
+                <input type="text" classs="col-sm-2 col-xs-4" ng-model="orderCtrl.filterData.state" ng-click="orderCtrl.toggleDropDown(orderCtrl.filterDropdownObject) " />
+                <ul class="dropdown-menu stateDropDown show" ng-if="orderCtrl.filterDropdownObject.showDropDown" show-hide="focus" controller-alias="orderCtrl">
+                    <li><a href="" ng-click="orderCtrl.updateState(orderCtrl.filterData, '')">All</a></li>
+                    <li><a href="" ng-click="orderCtrl.updateState(orderCtrl.filterData, 'ACCEPTED')">ACCEPTED</a></li>
+                    <li><a href="" ng-click="orderCtrl.updateState(orderCtrl.filterData, 'DISPATCHED')">DISPATCHED</a></li>
+                    <li><a href="" ng-click="orderCtrl.updateState(orderCtrl.filterData, 'DELIVERED')">DELIVERED</a></li>
+                </ul>
+            </div>
+        </aside>
         <div class="pull-left header">
             <span class="col-sm-4 col-xs-12">Customer Name</span>
             <span class="col-sm-4 stateColumn">State</span>
             <span class="col-sm-4 amountColumn">Amount</span>
         </div>
-        <div class="pull-left" ng-repeat="data in orderCtrl.shortData">
+        <div class="pull-left" ng-repeat="data in orderCtrl.shortData | filter:orderCtrl.filterData">
             <span class="col-sm-4 col-xs-12" ng-click="orderCtrl.setPopupData(data)"><a href="">{{::data.customer.name}}</a></span>
             <div class="col-sm-4 stateColumn">
                 <button type="button" ng-click="orderCtrl.toggleDropDown(data)">{{data.state}}</button>
                 <ul class="dropdown-menu stateDropDown show" ng-if="data.showDropDown" show-hide="focus" controller-alias="orderCtrl">
-                    <li><a href="#" ng-click="orderCtrl.updateState(data, 'ACCEPTED')">ACCEPTED</a></li>
-                    <li><a href="#" ng-click="orderCtrl.updateState(data, 'DISPATCHED')">DISPATCHED</a></li>
-                    <li><a href="#" ng-click="orderCtrl.updateState(data, 'DELIVERED')">DELIVERED</a></li>
+                    <li><a href="" ng-click="orderCtrl.updateState(data, 'ACCEPTED')">ACCEPTED</a></li>
+                    <li><a href="" ng-click="orderCtrl.updateState(data, 'DISPATCHED')">DISPATCHED</a></li>
+                    <li><a href="" ng-click="orderCtrl.updateState(data, 'DELIVERED')">DELIVERED</a></li>
                 </ul>
             </div>
             <span class="col-sm-4 amountColumn">{{::data.amount}}</span>

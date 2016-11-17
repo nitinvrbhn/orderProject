@@ -8,11 +8,15 @@
         isPopupOpen: boolean;
         isDataLoaded: boolean;
         isErrorOccured: boolean;
+        filterDropdownObject: any;
+        filterData: any;
         constructor($rootScope: ng.IRootScopeService, private requestor: IRequestor, private $scope: ng.IScope, private $timeout: ng.ITimeoutService, userDetails: IUserDetails) {
             this.appendedDataLength = 0;
             this.shortData = [];
             this.isPopupOpen = false;
             this.isDataLoaded = false;
+            this.filterData = {};
+            this.filterDropdownObject = {};
             this.isErrorOccured = false;
             userDetails.updateUserDetails(null, null);
             requestor.getAllData(this.loadData.bind(this));

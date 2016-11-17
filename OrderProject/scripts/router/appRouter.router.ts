@@ -8,7 +8,7 @@ module OrderProject {
             .when('/', {
                 templateUrl: "templates/order-page.html"
             })
-            .when('/paginated', {
+            .when('/paginate', {
                 templateUrl: "templates/order-detail.html"
             })
             .otherwise({

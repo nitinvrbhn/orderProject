@@ -91,7 +91,7 @@
 .paginated-order-container .order-row {
     width: 100%;
     height: 40px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .paginated-order-container .order-header, .paginated-order-container .order-row {
@@ -106,14 +106,20 @@
     .order-details .detail-row {
         padding-bottom: 5px;
     }
-.button-container > div{
+
+.button-container > div {
     padding-top: 15px;
 }
+
 button[disabled], html input[disabled] {
     opacity: .5;
 }
 
-.loginContainer > div{
+.loginContainer > div {
+    padding: 15px;
+}
+
+.filterContainer {
     padding: 15px;
 }
 
